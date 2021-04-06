@@ -29,13 +29,16 @@ if ${INPUT_TAGS}; then
     _TAGS='--tags'
 fi
 
-upstream_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${INPUT_UPSTREAM_REPOSITORY}.git"
+upstream_repo="https://github.com/${INPUT_UPSTREAM_REPOSITORY}.git"
 #upstream_dir=${INPUT_UPSTREAM_REPOSITORY##*/}
 target_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
 target_dir=${TARGET_REPOSITORY##*/}
+
+git config --global user.email "tobked@git.io"
+git config --global user.name "tobked"
 
 git clone ${target_repo}
 cd ${target_dir}
 git remote add upstream ${upstream_repo}
 git pull upstream master
-git push --force --follow-tags
+git push
