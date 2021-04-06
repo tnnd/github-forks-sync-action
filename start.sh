@@ -38,4 +38,4 @@ git clone ${target_repo}
 cd ${target_dir}
 git remote add upstream ${upstream_repo}
 git pull upstream master
-git push
+git push --force --follow-tags
