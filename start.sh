@@ -35,10 +35,10 @@ target_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${TARGET_R
 target_dir=${TARGET_REPOSITORY##*/}
 
 git config --global user.email "tobked@git.io"
-git config --global user.name "tobked"
+git config --global user.name "${GITHUB_ACTOR}"
 
 git clone ${target_repo}
 cd ${target_dir}
 git remote add upstream ${upstream_repo}
-git pull upstream master
+git pull upstream ${INPUT_UPSTREAM_BRANCH}
 git push
